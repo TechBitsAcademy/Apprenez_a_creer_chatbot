@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Chatbot Messenger & WhatsApp - Techbits Academy</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .logo-icon {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+        
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .video-container {
+            margin: 3rem auto;
+            max-width: 800px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            background: #000;
+            position: relative;
+            padding-top: 56.25%;
+        }
+        
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e67e22;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .testimonial {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        
+        .pricing {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--accent);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-bottom-left-radius: 12px;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+            color: var(--dark);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #64748b;
+        }
+        
+        .price-old {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 1.5rem;
+        }
+        
+        .price-saving {
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .features-list {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.75rem;
+        }
+        
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: #64748b;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .guarantee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .guarantee img {
+            margin-right: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <span class="logo-icon"><i class="fas fa-robot"></i></span>
+                    Techbits <span>Academy</span>
+                </a>
+                <div>
+                    <a href="#pricing" class="btn btn-outline">Tarifs</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <span class="badge">FORMATION OUVERTE À TOUS - DÉBUTANTS BIENVENUS</span>
+            <h1>Créez des Chatbots Pro sans Codage pour Messenger & WhatsApp</h1>
+            <p>Découvrez notre méthode exclusive pour automatiser vos conversations et booster votre business, même sans connaissances techniques</p>
+            <div>
+                <a href="#pricing" class="btn btn-accent">Réserver ma place</a>
+            </div>
+            
+           
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Pourquoi cette formation est unique ?</h2>
+            <p class="section-subtitle">Une approche révolutionnaire adaptée à tous les niveaux</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Pour Débutants & Experts</h3>
+                    <p>Pas besoin de savoir coder ! Nous vous guidons pas à pas, tout en offrant des techniques avancées pour ceux qui veulent aller plus loin.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>IA Sur Mesure</h3>
+                    <p>Nous vous apprenons à "éduquer" l'IA pour qu'elle connaisse parfaitement votre entreprise et réponde exactement comme vous le souhaitez.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>100% Mobile</h3>
+                    <p>Gérez vos chatbots directement depuis votre smartphone. Plus besoin d'être devant un ordinateur !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" style="background-color: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Ce que vous allez maîtriser</h2>
+            
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <div>
+                    <div class="card">
+                        <h3><i class="fas fa-comment-dots" style="color: var(--primary); margin-right: 10px;"></i> Chatbots avec Réponses Prédéfinies</h3>
+                        <p>Créez des flux de conversation intelligents pour :</p>
+                        <ul class="features-list">
+                            <li>Répondre aux questions fréquentes 24h/24</li>
+                            <li>Qualifier des leads automatiquement</li>
+                            <li>Prendre des rendez-vous sans intervention</li>
+                            <li>Vendre vos produits/services</li>
+                        </ul>
+                    </div>
+                    
+                   
+                </div>
+                
+                <div>
+                    <div class="card">
+                        <h3><i class="fas fa-robot" style="color: var(--primary); margin-right: 10px;"></i> Chatbots avec IA Générative</h3>
+                        <p>Donnez un coup de boost à vos chatbots avec :</p>
+                        <ul class="features-list">
+                            <li>Réponses personnalisées selon le profil du client</li>
+                            <li>Analyse d'intention automatique</li>
+                            <li>Base de connaissances évolutive</li>
+                            <li>Intégration avec vos documents et FAQ</li>
+                            <li>Apprentissage continu des interactions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 2rem;">
+            <h3><i class="fas fa-gift" style="color: var(--primary); margin-right: 10px;"></i> Bonus Exclusifs</h3>
+            <ul class="features-list">
+                <li>Modèles prêts à l'emploi pour différents secteurs</li>
+                <li>Liste des meilleurs outils gratuits et payants</li>
+            </ul>
+        </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Opportunités Business</h2>
+            <p class="section-subtitle">Voici ce que vous pourrez faire après cette formation</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-store" style="color: var(--primary); margin-right: 10px;"></i> Pour Votre Business</h3>
+                    <ul class="features-list">
+                        <li>Automatiser votre service client</li>
+                        <li>Vendre plus sans effort supplémentaire</li>
+                        <li>Réduire les coûts opérationnels</li>
+                        <li>Engager vos clients 24h/24</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-hand-holding-usd" style="color: var(--primary); margin-right: 10px;"></i> Services Rémunérés</h3>
+                    <ul class="features-list">
+                        <li>Création de chatbots pour des clients</li>
+                        <li>Maintenance et optimisation</li>
+                        <li>Formation à l'utilisation</li>
+                        <li>Abonnements mensuels de gestion</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-lightbulb" style="color: var(--primary); margin-right: 10px;"></i> Idées de Business</h3>
+                    <ul class="features-list">
+                        <li>Agence spécialisée en automatisation</li>
+                        <li>Chatbots pour restaurants/boutiques locales</li>
+                        <li>Formations locales sur le sujet</li>
+                        <li>Vente de modèles pré-configurés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section pricing" id="pricing">
+        <div class="container">
+         
+            <div class="grid">
+                
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Recommandé</div>
+                    <h3>Pack Complet</h3>
+                    <div class="price">9 700 FCFA <span>/ 16€</span></div>
+                    <div class="price-old">22 800 FCFA</div>
+                    <div class="price-saving">Économisez jusqu'à 58%</div>
+                    
+                    <ul class="features-list">
+                        <li>Accès immédiat aux vidéos</li>
+                        <li>Ressources téléchargeables</li>
+                        <li>consultations individuelles</li>
+                        <li>Support par email/whatsapp</li>
+                        <li>Modèles exclusifs</li>
+                        <li>Certificat (+3 500 FCFA optionnel)</li>
+                    </ul>
+                    
+                </div>
+            </div>
+            
+           
+        </div>
+    </section>
+    
+    
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Questions Fréquentes</h2>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Ai-je besoin d'expérience technique ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolument pas ! La formation est conçue pour les débutants complets. Nous utilisons des outils visuels qui ne nécessitent aucune connaissance en programmation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quand la formation commence-t-elle ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La formation est disponible dès votre inscription. Vous pouvez commencer immédiatement et progresser à votre rythme.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Puis-je vraiment tout faire depuis mon smartphone ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oui, nous avons sélectionné spécifiquement des outils qui fonctionnent parfaitement sur mobile. Certaines options avancées peuvent nécessiter un ordinateur, mais 90% des fonctionnalités sont accessibles depuis votre téléphone.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quelle est la différence entre les réponses prédéfinies et l'IA ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Les réponses prédéfinies sont idéales pour des scénarios précis et répétitifs. L'IA permet de gérer des questions imprévues en générant des réponses adaptées à partir de votre base de connaissances. Nous vous apprenons à combiner les deux pour un résultat optimal.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Le pack complet vaut-il vraiment le supplément ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Le pack complet vous fait gagner un temps précieux avec des configurations prêtes, vous donne accès à des ressources exclusives et surtout à un accompagnement personnalisé. Pour ceux qui veulent des résultats rapides ou monétiser rapidement ces compétences, c'est l'investissement idéal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2>Prêt à automatiser votre business ?</h2>
+            <p>Rejoignez des centaines d'entrepreneurs qui utilisent déjà nos méthodes pour gagner du temps et augmenter leurs ventes.</p>
+            <a href="inscription.html" class="btn" style="background-color: var(--accent);">Réserver ma place maintenant</a>
+            
+            <div class="guarantee">
+                <i class="fas fa-shield-alt" style="font-size: 2rem; margin-right: 1rem;"></i>
+                <p>Aucun paiement requis pour le moment</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="footer-logo">Techbits Academy</a>
+                    <p>Formations pratiques pour entrepreneurs digitaux.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Formations</h3>
+                    <ul>
+                        <li><a href="#">Chatbots Messenger/WhatsApp</a></li>
+                        <li><a href="#">Marketing Digital</a></li>
+                        <li><a href="#">Automatisation</a></li>
+                        <li><a href="#">E-commerce</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Entreprise</h3>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Méthodologie</a></li>
+                        <li><a href="#">Témoignages</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Légal</h3>
+                    <ul>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de remboursement</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Techbits Academy. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Animation pour le bouton de vidéo
+        const videoPlaceholder = document.querySelector('.video-placeholder');
+        videoPlaceholder.addEventListener('click', () => {
+            videoPlaceholder.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        });
+        
+        // FAQ accordéon
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    answer.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+        
+        // Animation pour les cartes au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.card, .pricing-card, .testimonial').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Compteur pour le bouton CTA
+        let count = 0;
+        const ctaBtn = document.querySelector('.cta .btn');
+        const originalText = ctaBtn.textContent;
+        
+        function updateCounter() {
+            count++;
+            if (count < 15) {
+                ctaBtn.textContent = `${originalText} (${count} places prises aujourd'hui)`;
+            } else if (count < 30) {
+                ctaBtn.textContent = `${originalText} (Déjà ${count} inscriptions !)`;
+            } else {
+                ctaBtn.textContent = `${originalText} (Rejoignez ${count} apprenants !)`;
+            }
+        }
+        
+        // Simuler des inscriptions aléatoires
+        setInterval(updateCounter, 30000);
+        updateCounter();
+    </script>
+</body>
+</html>

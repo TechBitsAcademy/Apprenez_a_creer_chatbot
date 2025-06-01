@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription Formation Chatbot - Techbits Academy</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .logo-icon {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+        
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #e67e22;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .form-header h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .form-frame {
+            width: 100%;
+            height: 1500px; /* Ajustez cette valeur selon la hauteur de votre formulaire */
+            border: none;
+            border-radius: 8px;
+        }
+        
+        .preorder-info {
+            background-color: #f0f9ff;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .preorder-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .guarantee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        .guarantee i {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .form-container {
+                padding: 2rem 1rem;
+            }
+            
+            .form-frame {
+                height: 1200px; /* Ajustement pour mobile */
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <span class="logo-icon"><i class="fas fa-robot"></i></span>
+                    Techbits <span>Academy</span>
+                </a>
+                <div>
+                    <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <span class="badge">PRÉVENTE EXCLUSIVE - LANCEMENT OFFICIEL LE 15 OCTOBRE</span>
+            <h1>Inscription à la Formation Chatbot</h1>
+            <p>Réservez votre place maintenant et bénéficiez d'un tarif avantageux et de bonus exclusifs</p>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Formulaire d'Inscription</h2>
+                    <p>Complétez ce formulaire pour réserver votre place en prévente</p>
+                </div>
+                
+                <div class="preorder-info">
+                    <h3><i class="fas fa-gift" style="margin-right: 10px;"></i> Avantages de la prévente</h3>
+                    <ul>
+                        <li><strong>Tarif réduit de 50%</strong> par rapport au prix de lancement</li>
+                        <li><strong>Bonus exclusif</strong> : Accès anticipé aux modules</li>
+                        <li><strong>Support prioritaire</strong> pendant les 3 premiers mois</li>
+                        <li><strong>Garantie satisfait ou remboursé</strong> sous 30 jours</li>
+                    </ul>
+                </div>
+                
+                <!-- Remplacez l'URL ci-dessous par celle de votre Google Form -->
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdxO6BsQ6JPfyMWVP-nn_AuvGu3Bs76JjV_zZ7BjkDFniE8UA/viewform?embedded=true" width="580" height="2220" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>                
+                <div class="guarantee">
+                    <i class="fas fa-lock"></i>
+                    <p>Vos informations sont sécurisées et ne seront jamais partagées</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" style="background-color: #f0f9ff; padding: 3rem 0;">
+        <div class="container">
+            <div style="text-align: center;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Questions avant de vous inscrire ?</h3>
+                <p>Contactez-nous par WhatsApp : <a href="https://wa.me/XXXXXXXXXX" style="color: var(--primary); font-weight: 600;"><i class="fab fa-whatsapp"></i> +XX XXX XXX XXX</a></p>
+                <p style="margin-top: 1rem;">Ou par email : <a href="mailto:contact@techbits-academy.com" style="color: var(--primary); font-weight: 600;">contact@techbits-academy.com</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <a href="#" class="footer-logo">Techbits Academy</a>
+            <div class="copyright">
+                <p>&copy; 2023 Techbits Academy. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Animation pour le défilement fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Compteur de places restantes
+        function updateCounter() {
+            const totalPlaces = 100;
+            const reservedPlaces = Math.floor(Math.random() * 30) + 50; // Simulation aléatoire
+            const remainingPlaces = totalPlaces - reservedPlaces;
+            
+            const counterElement = document.createElement('div');
+            counterElement.innerHTML = `<p style="text-align: center; margin-top: 1rem; font-weight: 600; color: var(--accent);">${remainingPlaces} places disponibles sur ${totalPlaces}</p>`;
+            
+            const formHeader = document.querySelector('.form-header');
+            if (formHeader && !document.getElementById('places-counter')) {
+                counterElement.id = 'places-counter';
+                formHeader.appendChild(counterElement);
+            }
+        }
+        
+        // Appel initial et mise à jour périodique
+        updateCounter();
+        setInterval(updateCounter, 60000); // Mise à jour toutes les minutes
+    </script>
+</body>
+</html>
