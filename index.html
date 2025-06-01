@@ -3,825 +3,670 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formation Chatbot Messenger & WhatsApp - Techbits Academy</title>
+    <title>TechBits Academy - Révolutionnez vos communications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Variables CSS pour faciliter les changements de couleurs */
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #059669;
-            --accent: #f59e0b;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --success: #10b981;
+            --primary-color: #007bff; /* Bleu vibrant */
+            --secondary-color: #28a745; /* Vert pour l'action */
+            --dark-bg: #343a40; /* Gris foncé */
+            --light-text: #f8f9fa; /* Texte clair */
+            --text-color: #333; /* Texte général */
+            --accent-color: #ffc107; /* Jaune pour l'accentuation */
         }
-        
-        * {
+
+        /* Styles de base */
+        body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-text);
+            overflow-x: hidden; /* Empêche le scroll horizontal indésirable */
         }
-        
-        header {
-            background-color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
+
+        /* Conteneur principal pour centrer le contenu */
         .container {
-            width: 90%;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo span {
-            color: var(--dark);
-            font-weight: 600;
-        }
-        
-        .logo-icon {
-            margin-right: 0.5rem;
-            font-size: 2rem;
-        }
-        
-        .hero {
-            padding: 6rem 0 4rem;
+
+        /* En-tête de la page */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), #0056b3);
+            color: var(--light-text);
+            padding: 80px 20px; /* Plus de padding pour un meilleur impact */
             text-align: center;
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
-        
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
+
+        .header h1 {
+            font-size: 3.8em; /* Plus grand pour l'impact */
+            margin-bottom: 15px;
+            font-weight: 700;
+            animation: fadeInDown 1s ease-out;
             line-height: 1.2;
-            font-weight: 800;
-            color: var(--dark);
         }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
+
+        .header p {
+            font-size: 1.6em; /* Plus grand et plus lisible */
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1.2s ease-out;
         }
-        
-        .video-container {
-            margin: 3rem auto;
-            max-width: 800px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            background: #000;
-            position: relative;
-            padding-top: 56.25%;
-        }
-        
-        .video-placeholder {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        .btn {
+
+        /* Bouton d'appel à l'action (CTA) */
+        .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0.5rem;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-accent {
-            background-color: var(--accent);
-        }
-        
-        .btn-accent:hover {
-            background-color: #e67e22;
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: var(--accent);
-            color: var(--dark);
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 18px 40px; /* Plus grand pour mobile */
             border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3em;
             font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* Ombre plus prononcée */
+            animation: pulse 1.5s infinite;
         }
-        
+
+        .cta-button:hover {
+            background-color: #218838;
+            transform: translateY(-5px); /* Effet de soulèvement */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Sections de contenu */
         .section {
-            padding: 5rem 0;
+            padding: 60px 0; /* Espacement uniforme */
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Ombre légère */
+            margin-bottom: 30px;
+            position: relative; /* Pour l'effet "after" */
         }
-        
-        .section-title {
+
+        /* Titres des sections */
+        h2 {
+            font-size: 3em; /* Plus grand pour l'impact */
+            color: var(--primary-color);
             text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--dark);
+            margin-bottom: 40px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
         }
-        
-        .section-subtitle {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3rem;
-            font-size: 1.2rem;
-            color: #64748b;
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100px; /* Ligne plus large */
+            height: 5px; /* Ligne plus épaisse */
+            background-color: var(--accent-color);
+            border-radius: 3px;
         }
-        
-        .grid {
+
+        /* Grille de fonctionnalités */
+        .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adaptatif */
+            gap: 30px;
+            margin-top: 30px;
         }
-        
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .testimonial {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
-        
-        .testimonial-author img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 1rem;
-        }
-        
-        .pricing {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-        }
-        
-        .pricing-card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+        .feature-item {
+            background-color: #f8f9fa;
+            padding: 30px; /* Plus d'espace */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px); /* Effet plus prononcé */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-item h3 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Points clés / Avantages */
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* Espacement plus grand */
+        }
+
+        .key-point-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            padding: 25px;
+            background-color: #e9f7ef;
+            border-left: 6px solid var(--secondary-color); /* Bordure plus visible */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .key-point-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+
+        .key-point-item .icon {
+            font-size: 3em; /* Icônes plus grandes */
+            color: var(--secondary-color);
+            min-width: 50px;
+            text-align: center;
+            line-height: 1; /* Pour aligner correctement */
+        }
+
+        .key-point-item h3 {
+            margin: 0;
+            color: var(--dark-bg);
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        .key-point-item p {
+            margin: 0;
+            font-size: 1.1em;
+            color: #444;
+        }
+
+        /* Section opportunités business */
+        .business-opportunities {
+            background: linear-gradient(135deg, var(--dark-bg), #212529); /* Fond plus riche */
+            color: var(--light-text);
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .business-opportunities h2 {
+            color: var(--accent-color);
+            margin-bottom: 35px;
+        }
+        .business-opportunities h2::after {
+            background-color: var(--light-text);
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .business-item {
+            background-color: rgba(255, 255, 255, 0.15); /* Légèrement plus opaque */
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3); /* Bordure plus visible */
+        }
+
+        .business-item:hover {
+            transform: translateY(-8px);
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: var(--accent-color); /* Changement de couleur au survol */
+        }
+
+        .business-item h3 {
+            color: var(--light-text);
+            font-size: 1.6em;
+            margin-bottom: 12px;
+        }
+
+        .business-item p {
+            font-size: 1.05em;
+            color: #d1d1d1;
+        }
+
+        /* Section prix */
+        .pricing {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        }
+
+        .pricing h2 {
+            color: var(--dark-bg);
+        }
+
+        .price-box {
+            background: linear-gradient(45deg, var(--primary-color), #0056b3); /* Dégradé pour le prix */
+            color: var(--light-text);
+            padding: 40px; /* Plus d'espace */
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 30px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35); /* Ombre plus forte */
+            animation: fadeIn 1s ease-out;
         }
-        
-        .pricing-card.popular {
-            border: 2px solid var(--accent);
-        }
-        
-        .popular-badge {
+
+        .price-box::before {
+            content: 'Offre Limitée !'; /* Texte plus percutant */
             position: absolute;
             top: 0;
             right: 0;
-            background-color: var(--accent);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-bottom-left-radius: 12px;
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            padding: 8px 20px;
+            font-weight: 700;
+            font-size: 1em;
+            border-bottom-left-radius: 10px;
+            transform: rotate(45deg) translate(30%, -30%);
+            transform-origin: top right;
         }
-        
-        .price {
-            font-size: 3rem;
-            font-weight: 800;
-            margin: 1.5rem 0;
-            color: var(--dark);
-        }
-        
-        .price span {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #64748b;
-        }
-        
-        .price-old {
+
+        .price-box .old-price {
             text-decoration: line-through;
-            color: #94a3b8;
-            font-size: 1.5rem;
+            font-size: 1.8em; /* Plus grand */
+            opacity: 0.7;
+            margin-bottom: 5px;
         }
-        
-        .price-saving {
-            color: var(--success);
-            font-weight: 600;
-            margin-bottom: 1rem;
+
+        .price-box .current-price {
+            font-size: 4em; /* Très grand pour l'impact */
+            font-weight: 700;
+            line-height: 1;
         }
-        
-        .features-list {
-            text-align: left;
-            margin: 2rem 0;
-        }
-        
-        .features-list li {
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 1.75rem;
-        }
-        
-        .features-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: bold;
-        }
-        
-        .faq-item {
-            margin-bottom: 1.5rem;
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .faq-question {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .faq-answer {
-            color: #64748b;
-        }
-        
-        .cta {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
+
+        /* Pied de page CTA */
+        .cta-footer {
             text-align: center;
-            padding: 6rem 0;
+            padding: 60px 20px;
+            margin-top: 50px;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            max-width: 700px;
+
+        .cta-footer p {
+            font-size: 1.4em; /* Plus grand */
+            margin-bottom: 30px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0.9;
         }
-        
-        .guarantee {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .guarantee img {
-            margin-right: 1rem;
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .footer-links h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-links a {
-            color: #cbd5e1;
+
+        .cta-footer .cta-button {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 20px 45px; /* Encore plus grand */
+            border-radius: 50px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 1.6em; /* Plus grand */
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
-        
-        .footer-links a:hover {
-            color: white;
+
+        .cta-footer .cta-button:hover {
+            background-color: #218838;
+            transform: translateY(-5px);
         }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: #334155;
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
+
+        .guarantee {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
-            font-size: 0.9rem;
+            padding: 20px;
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 25px;
         }
-        
+
+        .guarantee p {
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 20px rgba(40, 167, 69, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- MEDIA QUERIES POUR LA FLUIDITÉ RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .header h1 {
+                font-size: 3em;
+            }
+            .header p {
+                font-size: 1.4em;
+            }
+            h2 {
+                font-size: 2.5em;
+            }
+            .price-box .current-price {
+                font-size: 3.5em;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
+            .header {
+                padding: 60px 15px;
             }
-            
-            .section-title {
-                font-size: 1.8rem;
+            .header h1 {
+                font-size: 2.5em;
             }
-            
-            .btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
+            .header p {
+                font-size: 1.1em;
+            }
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
+            }
+
+            .container {
+                padding: 15px;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            h2 {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            h2::after {
+                width: 70px;
+                height: 4px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr; /* Une colonne sur mobile */
+                gap: 20px;
+            }
+            .feature-item {
+                padding: 25px;
+            }
+            .feature-item h3 {
+                font-size: 1.5em;
+            }
+
+            .key-point-item {
+                flex-direction: column; /* Icone au-dessus du texte */
+                text-align: center;
+                align-items: center;
+                gap: 15px;
+                padding: 20px;
+            }
+            .key-point-item .icon {
+                font-size: 2.5em;
+                min-width: unset;
+                margin-bottom: 5px;
+            }
+            .key-point-item h3 {
+                font-size: 1.4em;
+            }
+            .key-point-item p {
+                font-size: 0.95em;
+            }
+
+            .business-opportunities {
+                padding: 60px 15px;
+                margin-top: 40px;
+            }
+            .business-opportunities h2 {
+                font-size: 2.2em;
+            }
+            .business-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .business-item {
+                padding: 25px;
+            }
+            .business-item h3 {
+                font-size: 1.4em;
+            }
+
+            .pricing {
+                padding: 50px 15px;
+                margin-top: 40px;
+            }
+            .price-box {
+                padding: 30px;
+            }
+            .price-box .old-price {
+                font-size: 1.4em;
+            }
+            .price-box .current-price {
+                font-size: 3em;
+            }
+            .price-box::before {
+                font-size: 0.85em;
+                padding: 6px 15px;
+            }
+
+            .cta-footer {
+                padding: 50px 15px;
+                margin-top: 40px;
+            }
+            .cta-footer p {
+                font-size: 1.1em;
+                margin-bottom: 25px;
+            }
+            .cta-footer .cta-button {
+                padding: 18px 35px;
+                font-size: 1.3em;
+            }
+            .guarantee {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .header p {
+                font-size: 1em;
+            }
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .feature-item h3 {
+                font-size: 1.3em;
+            }
+            .feature-item p {
+                font-size: 0.95em;
+            }
+            .key-point-item h3 {
+                font-size: 1.2em;
+            }
+            .key-point-item p {
+                font-size: 0.9em;
+            }
+            .business-opportunities h2 {
+                font-size: 1.8em;
+            }
+            .business-item h3 {
+                font-size: 1.2em;
+            }
+            .business-item p {
+                font-size: 0.9em;
+            }
+            .price-box .old-price {
+                font-size: 1.2em;
+            }
+            .price-box .current-price {
+                font-size: 2.5em;
+            }
+            .cta-footer p {
+                font-size: 1em;
+            }
+            .cta-footer .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1em;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <span class="logo-icon"><i class="fas fa-robot"></i></span>
-                    Techbits <span>Academy</span>
-                </a>
-                <div>
-                    <a href="#pricing" class="btn btn-outline">Tarifs</a>
+
+    <div class="header">
+        <h1>Révolutionnez Vos Communications avec TechBits Academy</h1>
+        <p>Découvrez comment transformer votre manière d'interagir avec vos clients, automatisez votre présence et libérez un temps précieux. Ne manquez pas cette opportunité unique !</p>
+        <a href="#cta-section" class="cta-button">Réservez Votre Place Avant Tout Le Monde !</a>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Imaginez un Assistant Qui Travaille Pour Vous 24/7...</h2>
+            <p style="text-align: center; font-size: 1.15em; max-width: 800px; margin: 0 auto 40px; color: #555;">Fini les heures perdues à répondre aux mêmes questions ! Notre formation vous ouvre les portes de l'automatisation intelligente pour Facebook Messenger et WhatsApp. Que ce soit avec des **réponses prédéfinies** pour les questions fréquentes ou des **assistants conversationnels ultra-intelligents générés par l'IA**, vos clients obtiendront des réponses instantanées, précises et personnalisées, à tout moment.</p>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Automatisation Efficace</h3>
+                    <p>Mettez en place des réponses automatiques pour gérer les requêtes courantes, libérant ainsi votre temps pour des tâches plus importantes.</p>
                 </div>
-            </nav>
-        </div>
-    </header>
-    
-    <section class="hero">
-        <div class="container">
-            <span class="badge">FORMATION OUVERTE À TOUS - DÉBUTANTS BIENVENUS</span>
-            <h1>Créez des Chatbots Pro sans Codage pour Messenger & WhatsApp</h1>
-            <p>Découvrez notre méthode exclusive pour automatiser vos conversations et booster votre business, même sans connaissances techniques</p>
-            <div>
-                <a href="#pricing" class="btn btn-accent">Réserver ma place</a>
-            </div>
-            
-           
-        </div>
-    </section>
-    
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Pourquoi cette formation est unique ?</h2>
-            <p class="section-subtitle">Une approche révolutionnaire adaptée à tous les niveaux</p>
-            
-            <div class="grid">
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <h3>Pour Débutants & Experts</h3>
-                    <p>Pas besoin de savoir coder ! Nous vous guidons pas à pas, tout en offrant des techniques avancées pour ceux qui veulent aller plus loin.</p>
+                <div class="feature-item">
+                    <h3>IA au Service de Votre Entreprise</h3>
+                    <p>Créez des assistants IA qui connaissent votre entreprise sur le bout des doigts, capables de fournir des informations détaillées et de guider vos clients avec une pertinence inégalée.</p>
                 </div>
-                
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>IA Sur Mesure</h3>
-                    <p>Nous vous apprenons à "éduquer" l'IA pour qu'elle connaisse parfaitement votre entreprise et réponde exactement comme vous le souhaitez.</p>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>100% Mobile</h3>
-                    <p>Gérez vos chatbots directement depuis votre smartphone. Plus besoin d'être devant un ordinateur !</p>
+                <div class="feature-item">
+                    <h3>Service Client sans Faille</h3>
+                    <p>Offrez une expérience client exceptionnelle 24h/24, 7j/7, améliorant la satisfaction et la fidélisation.</p>
                 </div>
             </div>
         </div>
-    </section>
-    
-    <section class="section" style="background-color: #f8fafc;">
-        <div class="container">
-            <h2 class="section-title">Ce que vous allez maîtriser</h2>
-            
-            <div class="grid" style="grid-template-columns: 1fr 1fr;">
-                <div>
-                    <div class="card">
-                        <h3><i class="fas fa-comment-dots" style="color: var(--primary); margin-right: 10px;"></i> Chatbots avec Réponses Prédéfinies</h3>
-                        <p>Créez des flux de conversation intelligents pour :</p>
-                        <ul class="features-list">
-                            <li>Répondre aux questions fréquentes 24h/24</li>
-                            <li>Qualifier des leads automatiquement</li>
-                            <li>Prendre des rendez-vous sans intervention</li>
-                            <li>Vendre vos produits/services</li>
-                        </ul>
+
+        <div class="section">
+            <h2>Pourquoi Cette Formation Va Changer Votre Jeu ?</h2>
+            <div class="key-points">
+                <div class="key-point-item">
+                    <span class="icon">✨</span>
+                    <div>
+                        <h3>Gain de Temps Massif</h3>
+                        <p>Déléguez les interactions répétitives à des systèmes intelligents et concentrez-vous sur la croissance de votre activité.</p>
                     </div>
-                    
-                   
                 </div>
-                
-                <div>
-                    <div class="card">
-                        <h3><i class="fas fa-robot" style="color: var(--primary); margin-right: 10px;"></i> Chatbots avec IA Générative</h3>
-                        <p>Donnez un coup de boost à vos chatbots avec :</p>
-                        <ul class="features-list">
-                            <li>Réponses personnalisées selon le profil du client</li>
-                            <li>Analyse d'intention automatique</li>
-                            <li>Base de connaissances évolutive</li>
-                            <li>Intégration avec vos documents et FAQ</li>
-                            <li>Apprentissage continu des interactions</li>
-                        </ul>
+                <div class="key-point-item">
+                    <span class="icon">📈</span>
+                    <div>
+                        <h3>Augmentation de la Productivité</h3>
+                        <p>Gérez un volume plus important de demandes sans embaucher plus de personnel, optimisant vos ressources.</p>
+                    </div>
+                </div>
+                <div class="key-point-item">
+                    <span class="icon">💰</span>
+                    <div>
+                        <h3>Réduction des Coûts</h3>
+                        <p>Diminuez vos dépenses liées au support client manuel tout en améliorant la qualité de service.</p>
+                    </div>
+                </div>
+                 <div class="key-point-item">
+                    <span class="icon">⭐</span>
+                    <div>
+                        <h3>Expérience Client Améliorée</h3>
+                        <p>Offrez des réponses instantanées et personnalisées, créant une impression de professionnalisme et d'attention inégalée.</p>
+                    </div>
+                </div>
+                 <div class="key-point-item">
+                    <span class="icon">🚀</span>
+                    <div>
+                        <h3>Accessibilité Universelle</h3>
+                        <p>Que vous soyez un parfait débutant en informatique ou un professionnel expérimenté, cette formation est conçue pour vous. Pas besoin d'un ordinateur de pointe ni de compétences techniques préalables, nous vous guidons pas à pas !</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card" style="margin-top: 2rem;">
-            <h3><i class="fas fa-gift" style="color: var(--primary); margin-right: 10px;"></i> Bonus Exclusifs</h3>
-            <ul class="features-list">
-                <li>Modèles prêts à l'emploi pour différents secteurs</li>
-                <li>Liste des meilleurs outils gratuits et payants</li>
-            </ul>
-        </div>
-        </div>
-    </section>
-    
-    <section class="section">
+    </div>
+
+    <div class="business-opportunities">
         <div class="container">
-            <h2 class="section-title">Opportunités Business</h2>
-            <p class="section-subtitle">Voici ce que vous pourrez faire après cette formation</p>
-            
-            <div class="grid">
-                <div class="card">
-                    <h3><i class="fas fa-store" style="color: var(--primary); margin-right: 10px;"></i> Pour Votre Business</h3>
-                    <ul class="features-list">
-                        <li>Automatiser votre service client</li>
-                        <li>Vendre plus sans effort supplémentaire</li>
-                        <li>Réduire les coûts opérationnels</li>
-                        <li>Engager vos clients 24h/24</li>
-                    </ul>
+            <h2>Lancez Votre Propre Empire Après la Formation !</h2>
+            <p style="font-size: 1.25em; max-width: 900px; margin: 0 auto 30px; color: #e0e0e0;">Ce que vous apprendrez n'est pas seulement pour votre entreprise. C'est une compétence en or qui vous ouvrira les portes de nouvelles opportunités. Imaginez pouvoir :</p>
+            <div class="business-grid">
+                <div class="business-item">
+                    <h3>Devenir Consultant en Automatisation</h3>
+                    <p>Proposez vos services aux entreprises désireuses d'optimiser leur communication client et facturez au prix fort votre expertise.</p>
                 </div>
-                
-                <div class="card">
-                    <h3><i class="fas fa-hand-holding-usd" style="color: var(--primary); margin-right: 10px;"></i> Services Rémunérés</h3>
-                    <ul class="features-list">
-                        <li>Création de chatbots pour des clients</li>
-                        <li>Maintenance et optimisation</li>
-                        <li>Formation à l'utilisation</li>
-                        <li>Abonnements mensuels de gestion</li>
-                    </ul>
+                <div class="business-item">
+                    <h3>Créer Votre Agence d'Assistants IA</h3>
+                    <p>Développez et déployez des assistants conversationnels sur mesure pour divers clients, un marché en pleine explosion.</p>
                 </div>
-                
-                <div class="card">
-                    <h3><i class="fas fa-lightbulb" style="color: var(--primary); margin-right: 10px;"></i> Idées de Business</h3>
-                    <ul class="features-list">
-                        <li>Agence spécialisée en automatisation</li>
-                        <li>Chatbots pour restaurants/boutiques locales</li>
-                        <li>Formations locales sur le sujet</li>
-                        <li>Vente de modèles pré-configurés</li>
-                    </ul>
+                <div class="business-item">
+                    <h3>Développer Votre Marque Personnelle</h3>
+                    <p>Positionnez-vous comme un expert de l'automatisation et de l'IA, attirant de nouvelles opportunités et collaborations.</p>
+                </div>
+                <div class="business-item">
+                    <h3>Automatiser d'Autres Secteurs</h3>
+                    <p>Appliquez les principes appris à d'autres plateformes et industries, élargissant ainsi votre champ d'action et vos revenus.</p>
                 </div>
             </div>
         </div>
-    </section>
-    
-    <section class="section pricing" id="pricing">
-        <div class="container">
-         
-            <div class="grid">
-                
-                
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Recommandé</div>
-                    <h3>Pack Complet</h3>
-                    <div class="price">9 700 FCFA <span>/ 16€</span></div>
-                    <div class="price-old">22 800 FCFA</div>
-                    <div class="price-saving">Économisez jusqu'à 58%</div>
-                    
-                    <ul class="features-list">
-                        <li>Accès immédiat aux vidéos</li>
-                        <li>Ressources téléchargeables</li>
-                        <li>consultations individuelles</li>
-                        <li>Support par email/whatsapp</li>
-                        <li>Modèles exclusifs</li>
-                        <li>Certificat (+3 500 FCFA optionnel)</li>
-                    </ul>
-                    
-                </div>
+    </div>
+
+    <div class="container">
+        <div class="pricing">
+            <h2>Une Offre Incontournable Pour Un Avenir Rentable !</h2>
+            <div class="price-box">
+                <div class="old-price">22 400 FCFA</div>
+                <div class="current-price">9 700 FCFA / €</div>
             </div>
-            
-           
+            <p style="font-size: 1.25em; margin-top: 25px; color: #555;">Un investissement minime pour des compétences qui valent de l'or.</p>
         </div>
-    </section>
-    
-    
-    
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Questions Fréquentes</h2>
-            
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Ai-je besoin d'expérience technique ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolument pas ! La formation est conçue pour les débutants complets. Nous utilisons des outils visuels qui ne nécessitent aucune connaissance en programmation.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quand la formation commence-t-elle ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>La formation est disponible dès votre inscription. Vous pouvez commencer immédiatement et progresser à votre rythme.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Puis-je vraiment tout faire depuis mon smartphone ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Oui, nous avons sélectionné spécifiquement des outils qui fonctionnent parfaitement sur mobile. Certaines options avancées peuvent nécessiter un ordinateur, mais 90% des fonctionnalités sont accessibles depuis votre téléphone.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quelle est la différence entre les réponses prédéfinies et l'IA ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Les réponses prédéfinies sont idéales pour des scénarios précis et répétitifs. L'IA permet de gérer des questions imprévues en générant des réponses adaptées à partir de votre base de connaissances. Nous vous apprenons à combiner les deux pour un résultat optimal.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Le pack complet vaut-il vraiment le supplément ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Le pack complet vous fait gagner un temps précieux avec des configurations prêtes, vous donne accès à des ressources exclusives et surtout à un accompagnement personnalisé. Pour ceux qui veulent des résultats rapides ou monétiser rapidement ces compétences, c'est l'investissement idéal.</p>
-                    </div>
-                </div>
-            </div>
+    </div>
+
+    <div class="cta-footer" id="cta-section">
+        <p>Ceci n'est pas une inscription immédiate, mais votre chance de **prendre de l'avance** et de sécuriser votre place pour une formation qui va révolutionner votre business et vos compétences.</p>
+        <p>Ne ratez pas l'opportunité de transformer votre approche des communications. **Réservez votre place dès maintenant** pour être parmi les premiers informés et bénéficier de cette offre exceptionnelle.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxO6BsQ6JPfyMWVP-nn_AuvGu3Bs76JjV_zZ7BjkDFniE8UA/viewform?usp=preview" class="cta-button">Je Réserve Ma Place (Aucun Paiement Requis !)</a>
+        <div class="guarantee">
+            <p><i>En cliquant, vous exprimez simplement votre intérêt et votre engagement à être notifié dès que la formation est prête. Pas de surprises, juste l'accès prioritaire !</i></p>
         </div>
-    </section>
-    
-    <section class="cta">
-        <div class="container">
-            <h2>Prêt à automatiser votre business ?</h2>
-            <p>Rejoignez des centaines d'entrepreneurs qui utilisent déjà nos méthodes pour gagner du temps et augmenter leurs ventes.</p>
-            <a href="inscription.html" class="btn" style="background-color: var(--accent);">Réserver ma place maintenant</a>
-            
-            <div class="guarantee">
-                <i class="fas fa-shield-alt" style="font-size: 2rem; margin-right: 1rem;"></i>
-                <p>Aucun paiement requis pour le moment</p>
-            </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <a href="#" class="footer-logo">Techbits Academy</a>
-                    <p>Formations pratiques pour entrepreneurs digitaux.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Formations</h3>
-                    <ul>
-                        <li><a href="#">Chatbots Messenger/WhatsApp</a></li>
-                        <li><a href="#">Marketing Digital</a></li>
-                        <li><a href="#">Automatisation</a></li>
-                        <li><a href="#">E-commerce</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Entreprise</h3>
-                    <ul>
-                        <li><a href="#">À propos</a></li>
-                        <li><a href="#">Méthodologie</a></li>
-                        <li><a href="#">Témoignages</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Légal</h3>
-                    <ul>
-                        <li><a href="#">Conditions d'utilisation</a></li>
-                        <li><a href="#">Politique de confidentialité</a></li>
-                        <li><a href="#">Mentions légales</a></li>
-                        <li><a href="#">Politique de remboursement</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Techbits Academy. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        // Animation pour le bouton de vidéo
-        const videoPlaceholder = document.querySelector('.video-placeholder');
-        videoPlaceholder.addEventListener('click', () => {
-            videoPlaceholder.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-        });
-        
-        // FAQ accordéon
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
-                
-                if (answer.style.display === 'block') {
-                    answer.style.display = 'none';
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
-                } else {
-                    answer.style.display = 'block';
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
-                }
-            });
-        });
-        
-        // Animation pour les cartes au scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.card, .pricing-card, .testimonial').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
-        });
-        
-        // Compteur pour le bouton CTA
-        let count = 0;
-        const ctaBtn = document.querySelector('.cta .btn');
-        const originalText = ctaBtn.textContent;
-        
-        function updateCounter() {
-            count++;
-            if (count < 15) {
-                ctaBtn.textContent = `${originalText} (${count} places prises aujourd'hui)`;
-            } else if (count < 30) {
-                ctaBtn.textContent = `${originalText} (Déjà ${count} inscriptions !)`;
-            } else {
-                ctaBtn.textContent = `${originalText} (Rejoignez ${count} apprenants !)`;
-            }
-        }
-        
-        // Simuler des inscriptions aléatoires
-        setInterval(updateCounter, 30000);
-        updateCounter();
-    </script>
+    </div>
+
 </body>
 </html>
